@@ -958,7 +958,7 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: /img/BG.jpgg
+  banner_img: /img/BG.jpg
   banner_img_height: 80
   banner_mask_alpha: 0.3
   tagcloud:
