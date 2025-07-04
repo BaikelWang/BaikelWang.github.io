@@ -2,13 +2,15 @@
 title: Unet神经网络图像分割研究与应用
 date: 2025-07-04 10:30:38
 tags:  [Unet, DeepLearning, CV, 深度学习, 医学影像]
+index_img: /img/Unet神经网络图像分割研究与应用/1.png
+categories: 机器学习
 ---
 # Unet神经网络图像分割研究与应用
 
 # 一、概述
 语义分割(Semantic Segmentation)是图像处理和机器视觉一个重要分支。与分类任务不同，语义分割需要判断图像每个像素点的类别，进行精确分割。语义分割目前在自动驾驶、自动抠图、医疗影像等领域有着比较广泛的应用。
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671865992903-5e115811-25fd-4094-a124-a1b88b4af9ac.png)
+![](/img/Unet神经网络图像分割研究与应用/0.png)
 
 上图是基本的语义分割任务。
 
@@ -20,7 +22,7 @@ Unet可以说是最常用、最简单的一种分割模型了，它简单、高�
 
 # 二、Unet网络结构与优势
 ## 1、Encoder Part
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671868258508-f9df06f5-0f37-4ab4-822a-3c28fbb7f6d9.png)
+![](/img/Unet神经网络图像分割研究与应用/1.png)
 
 **<font style="color:rgb(18, 18, 18);">蓝/白色框表示 feature map；蓝色箭头表示 3x3 卷积，用于特征提取；</font>**
 
@@ -42,8 +44,7 @@ nn.Sequential(nn.Conv2d(in_channels, out_channels, 3),
 
 <font style="color:rgb(18, 18, 18);">上述的两次卷积之后是一个 </font>**<font style="color:rgb(18, 18, 18);">stride 为 2 的 max pooling</font>**<font style="color:rgb(18, 18, 18);">，输出大小变为 1/2 *(H, W)：</font>
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1663571684981-4150bab1-64fe-4666-8010-b64c38368a35.png)
-
+![](/img/Unet神经网络图像分割研究与应用/2.png)
 ```python
 nn.MaxPool2d(kernel_size=2, stride=2)
 ```
@@ -53,7 +54,7 @@ nn.MaxPool2d(kernel_size=2, stride=2)
 
 <font style="color:rgb(18, 18, 18);">Upsampling 上采样常用的方式有两种：1.</font>[FCN](https://zhuanlan.zhihu.com/p/77201674)<font style="color:rgb(18, 18, 18);"> </font>**<font style="color:rgb(18, 18, 18);">中介绍的反卷积</font>**<font style="color:rgb(18, 18, 18);">；2. </font>**<font style="color:rgb(18, 18, 18);">插值</font>**<font style="color:rgb(18, 18, 18);">。在插值实现方式中，bilinear 双线性插值的综合表现较好也较为常见 。</font>
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1663571871003-414abde4-dc2b-45c9-afe0-c7d46ec43f1c.png)
+![](/img/Unet神经网络图像分割研究与应用/3.png)
 
 <font style="color:rgb(18, 18, 18);">例子中是将一个 2x2 的矩阵通过插值的方式得到 4x4 的矩阵，那么将 2x2 的矩阵称为源矩阵，4x4 的矩阵称为目标矩阵。双线性插值中，目标点的值是由离他最近的 4 个点的值计算得到的，我们首先介绍如何找到目标点周围的 4 个点，以 P2 为例。</font>
 
@@ -61,16 +62,15 @@ nn.MaxPool2d(kernel_size=2, stride=2)
 
 <font style="color:rgb(18, 18, 18);">第一个公式，目标矩阵到源矩阵的坐标映射：</font>
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1663571908979-a6694101-f7da-4b29-9785-3ee268f57fd8.png)
+![](/img/Unet神经网络图像分割研究与应用/4.png)
 
 <font style="color:rgb(18, 18, 18);">为了找到那 4 个点，首先要找到目标点在源矩阵中的</font>**<font style="color:rgb(18, 18, 18);">相对位置</font>**<font style="color:rgb(18, 18, 18);">，上面的公式就是用来算这个的。P2 在目标矩阵中的坐标是 (0, 1)，对应到源矩阵中的坐标就是 (-0.25, 0.25)。坐标里面居然有小数跟负数，不急我们一个一个来处理。我们知道双线性插值是从坐标周围的 4 个点来计算该坐标的值，(-0.25, 0.25) 这个点周围的 4 个点是(-1, 0), (-1, 1), (0, 0), (0, 1)。为了找到负数坐标点，我们将源矩阵扩展为下面的形式，中间红色的部分为源矩阵。</font>
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1663571925727-fe910991-f8e7-4891-af04-0afd114cd085.png)
+![](/img/Unet神经网络图像分割研究与应用/5.png)
 
 <font style="color:rgb(18, 18, 18);">我们规定 f(i, j) 表示 (i, j)坐标点处的像素值，对于计算出来的对应的坐标，我们统一写成 (i+u, j+v) 的形式。那么这时 i=-1, u=0.75, j=0, v=0.25。把这 4 个点单独画出来，可以看到目标点 P2 对应到源矩阵中的</font>**<font style="color:rgb(18, 18, 18);">相对位置</font>**<font style="color:rgb(18, 18, 18);">。</font>
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1663571976003-2df2be31-45b8-4201-b83a-b01a90cd4240.png)
-
+![](/img/Unet神经网络图像分割研究与应用/6.png)
 <font style="color:rgb(18, 18, 18);">第二个公式，也是最后一个。</font>
 
 $ f(i + u, j + v) = (1 - u) (1 - v) f(i, j) + (1 - u) v f(i, j + 1) + u (1 - v) f(i + 1, j) + u v f(i + 1, j + 1) $
@@ -94,7 +94,7 @@ torch.cat([low_layer_features, deep_layer_features], dim=1)
 ## <font style="color:rgb(18, 18, 18);">3、上述模型结构在医疗影像中的优势</font>
 <font style="color:rgb(18, 18, 18);">深度学习用于医学影像处理的一个挑战在于，提供的样本往往比较少，而 U-Net 则在这个限制下依然有很好的表现：</font>
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671866301720-6cad0f11-f057-4a01-a30e-782e77729dad.png)
+![](/img/Unet神经网络图像分割研究与应用/7.png)
 
 
 
@@ -112,7 +112,7 @@ torch.cat([low_layer_features, deep_layer_features], dim=1)
 根据上一节我们所讲的unet网络结构，我们可以把net归结为4个功能类模块：卷积、上沉采样、下沉池化以及前向传播，以下逐一分析。
 
 ### 1.1卷积模块
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671868088402-84458ee7-fd43-4426-b255-f9014db5b3ab.png)
+![](/img/Unet神经网络图像分割研究与应用/8.png)
 
 ```python
 class Conv_Block(nn.Module):
@@ -133,7 +133,7 @@ class Conv_Block(nn.Module):
 在一次卷积中，上层数据通过inchannel输入，outchannel输出。卷积核是3x3，stride、padding值为1的矩阵，而reflect则是对称加强特征提取。在卷积层之后将对数据进行归一化处理，将彩色图像数据的一个通道里的每一个通道维度C按概率赋值为0.
 
 ### 1.2上沉采样
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671868876835-d88fb294-dc1e-4ea4-a65d-01b55a11c64f.png)
+![](/img/Unet神经网络图像分割研究与应用/9.png)
 
 ```python
 class UpSample(nn.Module):
@@ -145,7 +145,7 @@ class UpSample(nn.Module):
 以1x1，步长为1的卷积将数据进行降通道传输。
 
 ### 1.3下沉池化
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671869012844-ea579b0e-1aa7-481b-b99d-2773e2c3849b.png)![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671869070722-d3c5509a-c89a-48e3-9f7f-6dccd7e148cf.png)
+![](/img/Unet神经网络图像分割研究与应用/10.png)
 
 ```python
 class DownSample(nn.Module):
@@ -184,11 +184,11 @@ class DownSample(nn.Module):
 
 原图个例:
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671870447326-705105f5-4a78-4301-9a2e-4ddd12ade044.png)
+![](/img/Unet神经网络图像分割研究与应用/11.png)
 
 标签个例:
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671870515075-f2b66cf6-4b6c-4be1-b4e8-50c9cd57e885.png)
+![](/img/Unet神经网络图像分割研究与应用/12.png)
 
 整体是对原图进行了暗化来保留高亮部分。
 
@@ -243,7 +243,7 @@ if __name__ == '__main__':
 
 在经过7h的训练之后得到model权重参数，我们对其进行test，最终输出结果：
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1664686473966-af01ef82-c618-4c4b-a508-a3a7c1e08908.png?x-oss-process=image%2Fresize%2Cw_937%2Climit_0)
+![](/img/Unet神经网络图像分割研究与应用/13.png)
 
 从左到右依次是：原图，暗化图片，预测结果。
 
@@ -256,15 +256,14 @@ if __name__ == '__main__':
 
 训练集：
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671885296300-55472e96-be66-448b-9ff0-23c81063a2c0.png)
+![](/img/Unet神经网络图像分割研究与应用/14.png)
 
 标签：
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671885323497-50fb20c5-874c-4594-9385-f14b65a4af5d.png)
-
+![](/img/Unet神经网络图像分割研究与应用/15.png)
 在模型训练结束之后，我们可以用一些指标来测试模型性能，语义分割常用的指标是MIOU
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671885561114-34743e31-2851-4468-bd6b-1b577f3c0ed1.png)
+![](/img/Unet神经网络图像分割研究与应用/16.png)
 
 ```python
         if not os.path.exists(pred_dir):
@@ -312,11 +311,12 @@ if __name__ == '__main__':
 
 最后得出测试结果，以下展示其一：
 
-![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671885753807-e2939442-e825-4d87-8d52-be2ea68249db.png)
+![](/img/Unet神经网络图像分割研究与应用/17.png)
 
 # 五、总结体会
 1. 神经网络的搭建是核心步骤，要对应着论文中不能有偏差，尤其是前向传播不能掉以轻心。
-2. 在数据准备好了之后，数据的预处里很关键，也很困难，特别是对于大量的图片文件，在转化为张量之前要对其进行大量数学处理，来减小训练时特征提取以及模型的计算压力。![](https://cdn.nlark.com/yuque/0/2022/png/29209347/1671886224509-9528a9a9-4b68-4693-8d4c-7f2dd1d3acac.png)
+2. 在数据准备好了之后，数据的预处里很关键，也很困难，特别是对于大量的图片文件，在转化为张量之前要对其进行大量数学处理，来减小训练时特征提取以及模型的计算压力。
+![](/img/Unet神经网络图像分割研究与应用/18.png)
 3. 一块高性能的显卡很重要，我的笔记本是GTX1050的老显卡，在跑7h数据集的时候差点烧了，以后这种还是尽量租服务器跑。
 4. 测试集也很重要，最后结果要对训练数据进行反向传播，来提高模型准确度，测试集的数据尽量不要与训练集交叉过多。
 
