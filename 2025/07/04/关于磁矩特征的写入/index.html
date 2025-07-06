@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://baikelwang.github.io/img/%E5%85%B3%E4%BA%8E%E7%A3%81%E7%9F%A9%E7%89%B9%E5%BE%81%E5%86%99%E5%85%A5/0.png">
 <meta property="article:published_time" content="2025-07-04T09:41:21.620Z">
-<meta property="article:modified_time" content="2025-07-06T08:01:39.976Z">
+<meta property="article:modified_time" content="2025-07-06T08:07:28.066Z">
 <meta property="article:author" content="北海">
 <meta property="article:tag" content="MP">
 <meta property="article:tag" content="CSAT">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.7k 字
+          5.8k 字
         
       </span>
     
@@ -403,10 +403,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python">atom_fea_list = []<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(crystal)):<br>    base_fea = ari.get_atom_fea(crystal[i].specie.number)<br>    magmom  = crystal.site_properties[<span class="hljs-string">&#x27;magmom&#x27;</span>][i] <span class="hljs-comment"># 添加磁矩</span><br>    magmom = <span class="hljs-built_in">float</span>(magmom)  <span class="hljs-comment"># 确保磁矩是浮点数类型</span><br>    <span class="hljs-comment"># 将磁矩作为新特征追加</span><br>    extended_fea = np.append(base_fea, magmom)<br>    <br>    atom_fea_list.append(extended_fea)<br>    <span class="hljs-built_in">print</span>(extended_fea)<br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">[0.    0.    0.    0.    1.    0.    0.    0.    0.    0.    0.    0.</span><br><span class="hljs-string"> 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    1.    0.</span><br><span class="hljs-string"> 0.    0.    0.    0.    1.    0.    0.    0.    0.    0.    0.    0.</span><br><span class="hljs-string"> 0.    0.    0.    0.    1.    0.    0.    0.    0.    0.    0.    0.</span><br><span class="hljs-string"> 0.    1.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.</span><br><span class="hljs-string"> 0.    1.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.</span><br><span class="hljs-string"> 1.    0.    0.    0.    0.    0.    0.    0.    1.    0.    0.    0.</span><br><span class="hljs-string"> 0.    1.    0.    0.    0.    0.    0.    0.    0.514]</span><br><span class="hljs-string"> &#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <p>再统一封装</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">atom_fea = np.vstack(atom_fea_list)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;这是扩展后的原子特征&#x27;</span>)<br>atom_fea = torch.Tensor(atom_fea)<br><span class="hljs-built_in">print</span>(atom_fea)<br><br></code></pre></td></tr></table></figure>
-<p>tensor([[ 0.0000,  0.0000,  0.0000,  …,  0.0000,  0.0000,  0.5140],<br>        [ 0.0000,  0.0000,  0.0000,  …,  0.0000,  0.0000, -0.1120],<br>        [ 0.0000,  0.0000,  0.0000,  …,  0.0000,  0.0000,  0.9060],<br>        …,<br>        [ 0.0000,  0.0000,  0.0000,  …,  0.0000,  0.0000, -0.0070],<br>        [ 0.0000,  0.0000,  0.0000,  …,  0.0000,  0.0000, -0.0070],<br>        [ 0.0000,  0.0000,  0.0000,  …,  0.0000,  0.0000, -0.0070]])</p>
-<pre><code class="hljs">
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">atom_fea = np.vstack(atom_fea_list)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;这是扩展后的原子特征&#x27;</span>)<br>atom_fea = torch.Tensor(atom_fea)<br><span class="hljs-built_in">print</span>(atom_fea)<br><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">tensor([[ 0.0000,  0.0000,  0.0000,  ...,  0.0000,  0.0000,  0.5140],</span><br><span class="hljs-string">        [ 0.0000,  0.0000,  0.0000,  ...,  0.0000,  0.0000, -0.1120],</span><br><span class="hljs-string">        [ 0.0000,  0.0000,  0.0000,  ...,  0.0000,  0.0000,  0.9060],</span><br><span class="hljs-string">        ...,</span><br><span class="hljs-string">        [ 0.0000,  0.0000,  0.0000,  ...,  0.0000,  0.0000, -0.0070],</span><br><span class="hljs-string">        [ 0.0000,  0.0000,  0.0000,  ...,  0.0000,  0.0000, -0.0070],</span><br><span class="hljs-string">        [ 0.0000,  0.0000,  0.0000,  ...,  0.0000,  0.0000, -0.0070]])</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
