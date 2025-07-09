@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://baikelwang.github.io/img/data-structure.png">
 <meta property="article:published_time" content="2025-07-08T13:57:56.611Z">
-<meta property="article:modified_time" content="2025-07-08T14:02:02.665Z">
+<meta property="article:modified_time" content="2025-07-09T02:20:43.608Z">
 <meta property="article:author" content="北海">
 <meta property="article:tag" content="数据结构与算法">
 <meta property="article:tag" content="Python">
@@ -369,7 +369,7 @@
 <p>timer 参数是一个定期函数，与平台有关。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> timeit <span class="hljs-keyword">import</span> Timer<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test1</span>()<br>    li = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10000</span>):<br>        li.append(i)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test2</span>()<br>    li = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10000</span>):<br>        li += [i]<br><br>timer1 = Timer(<span class="hljs-string">&quot;test1()&quot;</span>, <span class="hljs-string">&quot;from __main__import test1&quot;</span>)<br>timer2 = Timer(<span class="hljs-string">&quot;test2()&quot;</span>, <span class="hljs-string">&quot;from __main__import test2&quot;</span>)<br><span class="hljs-built_in">print</span>(timer1.timeit&#123;<span class="hljs-number">1000</span>&#125;) <span class="hljs-comment"># 测算1000次</span><br></code></pre></td></tr></table></figure>
 
-<h1 id="Python-中常用操作的复杂度"><a href="#Python-中常用操作的复杂度" class="headerlink" title="Python 中常用操作的复杂度"></a>Python 中<font style="color:rgb(25, 27, 31);">常用操作的复杂度</font></h1><h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">lst = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>,<span class="hljs-number">20</span>))<br>l1 = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">100</span>,<span class="hljs-number">105</span>))<br></code></pre></td></tr></table></figure>
+<h1 id="Python-中常用操作的复杂度"><a href="#Python-中常用操作的复杂度" class="headerlink" title="Python 中常用操作的复杂度"></a>Python 中常用操作的复杂度</h1><h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">lst = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>,<span class="hljs-number">20</span>))<br>l1 = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">100</span>,<span class="hljs-number">105</span>))<br></code></pre></td></tr></table></figure>
 
 <table>
 <thead>
@@ -445,7 +445,7 @@
 <td align="left">查找元素，并返回元素位置</td>
 </tr>
 <tr>
-<td align="left"><a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=159512488&content_type=Article&match_order=1&q=bisect&zhida_source=entity"><font style="color:rgb(9, 64, 142);">bisect</font></a>.bisect_left(lst, 15)</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=159512488&content_type=Article&match_order=1&q=bisect&zhida_source=entity"><font style="color:rgb(9, 64, 142);">bisect</a>.bisect_left(lst, 15)</td>
 <td align="left">O(log(N))</td>
 <td align="left">有序列表使用bisect查找元素</td>
 </tr>
@@ -455,186 +455,186 @@
 <table>
 <thead>
 <tr>
-<th align="left"><font style="color:rgb(25, 27, 31);">操作</font></th>
-<th align="left"><font style="color:rgb(25, 27, 31);">时间复杂度</font></th>
-<th align="left"><font style="color:rgb(25, 27, 31);">描述</font></th>
+<th align="left">操作</th>
+<th align="left">时间复杂度</th>
+<th align="left">描述</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">tpl[2]</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">访问元素</font></td>
+<td align="left">tpl[2]</td>
+<td align="left">O(1)</td>
+<td align="left">访问元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">tpl.count(2)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(N)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">元素计数</font></td>
+<td align="left">tpl.count(2)</td>
+<td align="left">O(N)</td>
+<td align="left">元素计数</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">tpl.index(2)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(N)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">查找元素，并返回元素位置</font></td>
+<td align="left">tpl.index(2)</td>
+<td align="left">O(N)</td>
+<td align="left">查找元素，并返回元素位置</td>
 </tr>
 </tbody></table>
-<h2 id="set"><a href="#set" class="headerlink" title="set"></a><font style="color:rgb(25, 27, 31);">set</font></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">ss1 = <span class="hljs-built_in">set</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>))<br>ss2 = <span class="hljs-built_in">set</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>,<span class="hljs-number">15</span>))<br></code></pre></td></tr></table></figure>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">ss1 = <span class="hljs-built_in">set</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>))<br>ss2 = <span class="hljs-built_in">set</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>,<span class="hljs-number">15</span>))<br></code></pre></td></tr></table></figure>
 
 <table>
 <thead>
 <tr>
-<th align="left"><font style="color:rgb(25, 27, 31);">操作</font></th>
-<th align="left"><font style="color:rgb(25, 27, 31);">时间复杂度</font></th>
-<th align="left"><font style="color:rgb(25, 27, 31);">描述</font></th>
+<th align="left">操作</th>
+<th align="left">时间复杂度</th>
+<th align="left">描述</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">5 in ss1</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">判断元素是否在set中</font></td>
+<td align="left">5 in ss1</td>
+<td align="left">O(1)</td>
+<td align="left">判断元素是否在set中</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">ss1</td>
-<td align="left">ss2</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(len(ss1)+len(ss2))</font></td>
+<td align="left">ss1</td>
+<td align="left">ss2</td>
+<td align="left">O(len(ss1)+len(ss2))</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">ss1 &amp; ss2</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(len(s)*len(t))</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">取交集，等同于ss1.intersection(ss2)</font></td>
+<td align="left">ss1 &amp; ss2</td>
+<td align="left">O(len(s)*len(t))</td>
+<td align="left">取交集，等同于ss1.intersection(ss2)</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">ss1 - ss2</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(len(ss1))</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">取差集，等同于ss1.difference(ss2)</font></td>
+<td align="left">ss1 - ss2</td>
+<td align="left">O(len(ss1))</td>
+<td align="left">取差集，等同于ss1.difference(ss2)</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">ss1 ^ ss2</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(len(ss1)*len(ss2))</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">取异或集，等同于</font></td>
+<td align="left">ss1 ^ ss2</td>
+<td align="left">O(len(ss1)*len(ss2))</td>
+<td align="left">取异或集，等同于</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">ss1.add(11)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">增加元素</font></td>
+<td align="left">ss1.add(11)</td>
+<td align="left">O(1)</td>
+<td align="left">增加元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">ss1.pop()</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">弹出一个元素</font></td>
+<td align="left">ss1.pop()</td>
+<td align="left">O(1)</td>
+<td align="left">弹出一个元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">ss1.remove(5)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">删除指定元素</font></td>
+<td align="left">ss1.remove(5)</td>
+<td align="left">O(1)</td>
+<td align="left">删除指定元素</td>
 </tr>
 </tbody></table>
-<h2 id="dict"><a href="#dict" class="headerlink" title="dict"></a><font style="color:rgb(25, 27, 31);">dict</font></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">dd = &#123;<span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-number">10</span>,<span class="hljs-string">&#x27;b&#x27;</span>:<span class="hljs-number">20</span>,<span class="hljs-string">&#x27;c&#x27;</span>:<span class="hljs-number">30</span>,<span class="hljs-string">&#x27;d&#x27;</span>:<span class="hljs-number">40</span>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">dd = &#123;<span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-number">10</span>,<span class="hljs-string">&#x27;b&#x27;</span>:<span class="hljs-number">20</span>,<span class="hljs-string">&#x27;c&#x27;</span>:<span class="hljs-number">30</span>,<span class="hljs-string">&#x27;d&#x27;</span>:<span class="hljs-number">40</span>&#125;<br></code></pre></td></tr></table></figure>
 
 <table>
 <thead>
 <tr>
-<th align="left"><font style="color:rgb(25, 27, 31);">操作</font></th>
-<th align="left"><font style="color:rgb(25, 27, 31);">时间复杂度</font></th>
-<th align="left"><font style="color:rgb(25, 27, 31);">描述</font></th>
+<th align="left">操作</th>
+<th align="left">时间复杂度</th>
+<th align="left">描述</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">dd[‘e’] &#x3D; 50</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">插入元素</font></td>
+<td align="left">dd[‘e’] &#x3D; 50</td>
+<td align="left">O(1)</td>
+<td align="left">插入元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">dd[‘a’]</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">访问元素，等同于dd.get(‘a’)</font></td>
+<td align="left">dd[‘a’]</td>
+<td align="left">O(1)</td>
+<td align="left">访问元素，等同于dd.get(‘a’)</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">del dd[‘a’]</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">删除元素</font></td>
+<td align="left">del dd[‘a’]</td>
+<td align="left">O(1)</td>
+<td align="left">删除元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">dd[‘b’] &#x3D; 100</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">修改元素</font></td>
+<td align="left">dd[‘b’] &#x3D; 100</td>
+<td align="left">O(1)</td>
+<td align="left">修改元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">dd.pop(‘b’)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">弹出一个元素</font></td>
+<td align="left">dd.pop(‘b’)</td>
+<td align="left">O(1)</td>
+<td align="left">弹出一个元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">dd.clear()</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">清空字典</font></td>
+<td align="left">dd.clear()</td>
+<td align="left">O(1)</td>
+<td align="left">清空字典</td>
 </tr>
 </tbody></table>
-<h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a><font style="color:rgb(25, 27, 31);">deque</font></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> deque<br>deq = deque(<span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>))<br>ll = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>))<br></code></pre></td></tr></table></figure>
+<h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> deque<br>deq = deque(<span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>))<br>ll = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>))<br></code></pre></td></tr></table></figure>
 
 <table>
 <thead>
 <tr>
-<th align="left"><font style="color:rgb(25, 27, 31);">操作</font></th>
-<th align="left"><font style="color:rgb(25, 27, 31);">时间复杂度</font></th>
-<th align="left"><font style="color:rgb(25, 27, 31);">描述</font></th>
+<th align="left">操作</th>
+<th align="left">时间复杂度</th>
+<th align="left">描述</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">deq.pop()</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">弹出最右侧的元素</font></td>
+<td align="left">deq.pop()</td>
+<td align="left">O(1)</td>
+<td align="left">弹出最右侧的元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">deq.popleft()</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">弹出最左侧的元素</font></td>
+<td align="left">deq.popleft()</td>
+<td align="left">O(1)</td>
+<td align="left">弹出最左侧的元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">deq.append(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">在右侧增加一个元素</font></td>
+<td align="left">deq.append(1)</td>
+<td align="left">O(1)</td>
+<td align="left">在右侧增加一个元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">deq.appendleft(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">在左侧增加一个元素</font></td>
+<td align="left">deq.appendleft(1)</td>
+<td align="left">O(1)</td>
+<td align="left">在左侧增加一个元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">deq.extend(ll)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(K)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">在右侧逐个添加元素</font></td>
+<td align="left">deq.extend(ll)</td>
+<td align="left">O(K)</td>
+<td align="left">在右侧逐个添加元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">deq.extendleft(ll)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(K)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">在左侧逐个添加元素</font></td>
+<td align="left">deq.extendleft(ll)</td>
+<td align="left">O(K)</td>
+<td align="left">在左侧逐个添加元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">deq.rotate(K)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(K)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">旋转</font></td>
+<td align="left">deq.rotate(K)</td>
+<td align="left">O(K)</td>
+<td align="left">旋转</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">deq.remove(5)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(N)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">删除指定元素</font></td>
+<td align="left">deq.remove(5)</td>
+<td align="left">O(N)</td>
+<td align="left">删除指定元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">deq[0]</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">访问第一个元素</font></td>
+<td align="left">deq[0]</td>
+<td align="left">O(1)</td>
+<td align="left">访问第一个元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">deq[N-1]</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(1)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">访问最后一个元素</font></td>
+<td align="left">deq[N-1]</td>
+<td align="left">O(1)</td>
+<td align="left">访问最后一个元素</td>
 </tr>
 <tr>
-<td align="left"><font style="color:rgb(25, 27, 31);">deq[N&#x2F;2]</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">O(N)</font></td>
-<td align="left"><font style="color:rgb(25, 27, 31);">访问中间元素</font></td>
+<td align="left">deq[N&#x2F;2]</td>
+<td align="left">O(N)</td>
+<td align="left">访问中间元素</td>
 </tr>
 </tbody></table>
-<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a><font style="color:rgb(25, 27, 31);">数据结构</font></h1><p>本质上是指如何把数据组合在一起，是对基本数据 int，float，str，char 的封装。</p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>本质上是指如何把数据组合在一起，是对基本数据 int，float，str，char 的封装。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python">[<br>    (<span class="hljs-string">&quot;zhangsan&quot;</span>,<span class="hljs-number">23</span>,<span class="hljs-string">&quot;beijing&quot;</span>),<br>    (<span class="hljs-string">&quot;zhangsan&quot;</span>,<span class="hljs-number">23</span>,<span class="hljs-string">&quot;beijing&quot;</span>),<br>    (<span class="hljs-string">&quot;zhangsan&quot;</span>,<span class="hljs-number">23</span>,<span class="hljs-string">&quot;beijing&quot;</span>),<br>]<br>[<br>    &#123;<br>    <span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;zhangsan&quot;</span>,<br>    <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">23</span>,<br>    <span class="hljs-string">&quot;hometown&quot;</span>:<span class="hljs-string">&quot;beijing&quot;</span><br>    &#125;,<br>]<br>&#123;<br>    <span class="hljs-string">&quot;zhangsan&quot;</span>:&#123;<br>        <span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">23</span>,<br>        <span class="hljs-string">&quot;hometown&quot;</span>:<span class="hljs-string">&quot;beijing&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>程序 &#x3D; 数据结构 + 算法</strong></p>
