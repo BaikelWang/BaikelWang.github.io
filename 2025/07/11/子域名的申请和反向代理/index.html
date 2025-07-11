@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://baikelwang.github.io/img/%E5%BB%BA%E7%BD%91%E7%AB%99/image.png">
 <meta property="article:published_time" content="2025-07-11T03:35:32.547Z">
-<meta property="article:modified_time" content="2025-07-11T03:45:39.215Z">
+<meta property="article:modified_time" content="2025-07-11T06:29:52.795Z">
 <meta property="article:author" content="北海">
 <meta property="article:tag" content="网站">
 <meta property="article:tag" content="域名">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          744 字
+          782 字
         
       </span>
     
@@ -313,7 +313,7 @@
 <li>勾选 “Enforce HTTPS” 选项</li>
 </ol>
 <h3 id="步骤-5：验证配置"><a href="#步骤-5：验证配置" class="headerlink" title="步骤 5：验证配置"></a>步骤 5：验证配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 检查 Caddy 日志</span><br><span class="hljs-built_in">sudo</span> journalctl -u caddy -f --since <span class="hljs-string">&quot;5 minutes ago&quot;</span><br><br><span class="hljs-comment"># 测试访问</span><br>curl -I https://baikel.xxx.cn<br><span class="hljs-comment"># 应返回 200 OK 和 GitHub 的服务器头</span><br></code></pre></td></tr></table></figure>
-
+<h3 id="步骤-6：在-hexo-中配置-cname"><a href="#步骤-6：在-hexo-中配置-cname" class="headerlink" title="步骤 6：在 hexo 中配置 cname"></a>步骤 6：在 hexo 中配置 cname</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 进入项目目录</span><br><span class="hljs-built_in">cd</span> /path/to/your/hexo/project<br><span class="hljs-comment"># 创建 CNAME 文件</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;baikel.iamlgao.cn&quot;</span> &gt; <span class="hljs-built_in">source</span>/CNAME<br>高级配置选项<br></code></pre></td></tr></table></figure>
 <h3 id="高级配置选项"><a href="#高级配置选项" class="headerlink" title="高级配置选项"></a>高级配置选项</h3><h4 id="1-添加-HSTS-安全头"><a href="#1-添加-HSTS-安全头" class="headerlink" title="1. 添加 HSTS 安全头"></a>1. 添加 HSTS 安全头</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nginx">baikel.xxx.<span class="hljs-section">cn</span> &#123;<br>    <span class="hljs-attribute">header</span> Strict-Transport-Security <span class="hljs-string">&quot;max-age=31536000;&quot;</span><br>    <span class="hljs-comment"># ...其他配置...</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="2-缓存优化（提升速度）"><a href="#2-缓存优化（提升速度）" class="headerlink" title="2. 缓存优化（提升速度）"></a>2. 缓存优化（提升速度）</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs nginx">baikel.xxx.<span class="hljs-section">cn</span> &#123;<br>    <span class="hljs-attribute">reverse_proxy</span> https://baikelwang.github.io &#123;<br>        <span class="hljs-attribute">header_up</span> Host &#123;upstream_hostport&#125;<br>      <br>        <span class="hljs-comment"># 缓存静态资源</span><br>        @<span class="hljs-section">static</span> &#123;<br>            <span class="hljs-attribute">path</span> <span class="hljs-regexp">*.css</span> <span class="hljs-regexp">*.js</span> <span class="hljs-regexp">*.jpg</span> <span class="hljs-regexp">*.png</span> <span class="hljs-regexp">*.gif</span><br>        &#125;<br>        reverse_proxy_cache <span class="hljs-variable">@static</span> &#123;<br>            <span class="hljs-attribute">duration</span> <span class="hljs-number">24h</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
