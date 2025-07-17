@@ -1,6 +1,6 @@
 ---
 title: 在腾讯云轻量级服务器中部署hugoblox静态网站
-date: 2025年7月11日 11:40:38
+date: 2025-7-11 11:40:38
 tags:  [网站,域名,caddy,hugo blox,腾讯云]
 index_img: /img/建网站/web.png
 categories: 杂谈
